@@ -25,18 +25,48 @@ Run locally (examples):
 - SMT solvers: `python3 SMT/runner.py <instance_file>`
 - Wrapper runs: `python3 run_m.py <instance_file> <method>` or `python3 run_m2.py <instance_file> <method>`
 
-Docker (build and run):
-1. Build the image:
+## Docker — build and run
+
+1. Build the image (run in repository root):
+   
+   docker build -t cdmo:latest .
+
+2. Example run (macOS — mounts workspace Instances and res):
+   
+   docker run --rm -it \
+     -v /Users/negin/Desktop/CDMO_feb/Instances:/src/Instances \
+     -v /Users/negin/Desktop/CDMO_feb/res:/src/res \
+     cdmo:latest \
+     /venv/bin/python3 run_m2.py /src/Instances/inst01.dat MIP
+
+3. Optional helper script `run_docker.sh` (place in repo root):
 
 ```bash
-docker build -t cdmo_final .
+#!/usr/bin/env bash
+# run_docker.sh
+INSTANCE_FILE="$1"   # e.g. inst01.dat
+METHOD="$2"          # e.g. MIP, CP, SMT
+IMAGE_NAME="cdmo:latest"
+
+docker build -t "$IMAGE_NAME" .
+docker run --rm -it \
+  -v "$(pwd)/Instances":/src/Instances \
+  -v "$(pwd)/res":/src/res \
+  "$IMAGE_NAME" /venv/bin/python3 run_m2.py "/src/Instances/$INSTANCE_FILE" "$METHOD"
 ```
 
-2. Use the included script (edit paths inside `run_docker.sh` if needed):
+Make it executable:
+   
+   chmod +x run_docker.sh
 
-```bash
-./run_docker.sh inst01.dzn CP
-```
+Usage:
+   
+   ./run_docker.sh inst01.dat MIP
+
+Notes:
+- Adjust the mounted host paths or the Python/venv path inside the image if your environment differs.
+- If you prefer absolute host paths, replace "$(pwd)/..." with the full path to your workspace.
+- The example uses `run_m2.py` — replace with `run_m.py` or a solver-specific script as needed.
 
 ## Experiments & Results
 - Experimental outputs are stored under `res/CP`, `res/MIP`, and `res/SMT`.
