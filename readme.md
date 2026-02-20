@@ -1,10 +1,3 @@
-Here’s a step-by-step guide with the necessary instructions for running your model on Docker:
-example:
-1.  execute: docker build -t cdmo .
-2. edit:
-   if [ ! -f "/Users/negin/Desktop/N/CDMO_DEC/Instances/$INSTANCE_FILE" ]; then 
-   docker run -it -v /Users/negin/Desktop/CDMO_feb/Instances:/src/Instances -v /Users/negin/Desktop/N/CDMO_feb/res:/src/res $IMAGE_NAME /venv/bin/python3 run_m2.py /src/Instances/$INSTANCE_FILE $SOLVING_METHOD
-3. execute: ./run_docker.sh inst01.dat SAT
 ## Multiple Courier Delivery & Matching Optimization (CDMO)
 
 This repository contains models, solvers, and instance data used for the CDMO project. The full technical report is included as `CDMO_report.pdf` — refer to it for detailed methodology, experiments and results.
