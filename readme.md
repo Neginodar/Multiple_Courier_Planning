@@ -5,26 +5,54 @@ example:
    if [ ! -f "/Users/negin/Desktop/N/CDMO_DEC/Instances/$INSTANCE_FILE" ]; then 
    docker run -it -v /Users/negin/Desktop/CDMO_feb/Instances:/src/Instances -v /Users/negin/Desktop/N/CDMO_feb/res:/src/res $IMAGE_NAME /venv/bin/python3 run_m2.py /src/Instances/$INSTANCE_FILE $SOLVING_METHOD
 3. execute: ./run_docker.sh inst01.dat SAT
+## Multiple Courier Delivery & Matching Optimization (CDMO)
 
-description:
-	1.	Build your Docker Image
-First, you need to build your Docker image by running the following command in your terminal:
+This repository contains models, solvers, and instance data used for the CDMO project. The full technical report is included as `CDMO_report.pdf` — refer to it for detailed methodology, experiments and results.
 
-docker build -t cdmo_final .  
+**Contents:**
+- **CP/**: MiniZinc constraint programming models and runner scripts.
+- **MIP/**: Mixed-Integer Programming implementation and helpers.
+- **SMT/**: SMT-based solvers and the `runner.py` orchestrator.
+- **Instances/**: Problem instance files (`.dzn`/`.dat`).
+- **res/**: JSON result files for CP, MIP and SMT experiments.
 
-You can replace cdmo_final with any other tag you prefer, which will help you identify and use the image later.
-	2.	Edit the run_docker.sh File
-Before running the above command, you must edit the run_docker.sh file to specify the correct directories for instances and output. Ensure that you set the correct paths for your input files (instances) and output directory within the run_docker.sh file.
+**Summary (from the report)**
+- We study the Multiple Courier Planning problem and evaluate three modelling approaches: Constraint Programming (CP), Mixed Integer Programming (MIP) and SMT encodings.
+- Experiments use the instances in `Instances/` and results are in `res/` — see `CDMO_report.pdf` for performance tables and comparative analysis.
 
-	3.	Run the Docker Image
-Once the image is built, you can run it directly or use a script. To run the Docker container, you can use:
+## Quick Start
 
-./run_docker.sh <instance_file> <method>
+Requirements:
+- Python dependencies: see `requirements.txt`.
+- Docker (optional) to run inside a container.
 
-Where:
-	•	<instance_file>: The path to the instance file (input data).
-	•	<method>: The method or solver you want to use for solving the problem.
+Run locally (examples):
+- MIP solver: `python3 MIP/MIP.py <instance_file>`
+- CP solver: `python3 CP/run.py <instance_file>`
+- SMT solvers: `python3 SMT/runner.py <instance_file>`
+- Wrapper runs: `python3 run_m.py <instance_file> <method>` or `python3 run_m2.py <instance_file> <method>`
 
+Docker (build and run):
+1. Build the image:
 
-Make sure to adjust paths and the instance data as needed before executing these steps.
+```bash
+docker build -t cdmo_final .
+```
+
+2. Use the included script (edit paths inside `run_docker.sh` if needed):
+
+```bash
+./run_docker.sh inst01.dzn CP
+```
+
+## Experiments & Results
+- Experimental outputs are stored under `res/CP`, `res/MIP`, and `res/SMT`.
+- Consult `CDMO_report.pdf` for the experimental setup, metrics, and a discussion of findings.
+
+## Notes
+- Some helper scripts and runners expect instance paths or environment-specific mounts; adjust `run_docker.sh` and script paths to match your local setup.
+- If you want, I can add example commands for each solver using specific instances.
+
+## Contact
+For questions or to reproduce experiments, open an issue or contact the repository owner.
 
