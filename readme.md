@@ -1,4 +1,4 @@
-## Multiple Courier Delivery & Matching Optimization (CDMO)
+## Combinatorial decition making and optimization(CDMO)
 
 This repository contains models, solvers, and instance data used for the CDMO project. The full technical report is included as `CDMO_report.pdf` — refer to it for detailed methodology, experiments and results.
 
