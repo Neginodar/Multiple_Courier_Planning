@@ -1,0 +1,22 @@
+{
+    "highs": {
+        "time": 300,
+        "optimal": false,
+        "obj": "N/A"
+    },
+    "gurobi": {
+        "time": 300,
+        "optimal": false,
+        "obj": "N/A"
+    },
+    "gurobi_sb": {
+        "time": 300,
+        "optimal": false,
+        "obj": "N/A"
+    },
+    "highs_sb": {
+        "time": 300,
+        "optimal": false,
+        "obj": "N/A"
+    }
+}

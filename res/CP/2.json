@@ -1,0 +1,38 @@
+{
+    "Gecode_sb": {
+        "time": 0,
+        "optimal": true,
+        "obj": 226,
+        "sol": [[8, 9], [6], [5], [3], [4, 1], [7, 2]]
+    },
+    "chuffed_sb": {
+        "time": 0,
+        "optimal": true,
+        "obj": 226,
+        "sol": [[6], [2, 3], [7, 5], [4], [1], [8, 9]]
+    },
+    "Gecode_nosb": {
+        "time": 0,
+        "optimal": true,
+        "obj": 226,
+        "sol": [[8, 9], [6], [5], [3], [4, 1], [7, 2]]
+    },
+    "chuffed_nosb": {
+        "time": 0,
+        "optimal": true,
+        "obj": 226,
+        "sol": [[7], [5, 9], [8], [6], [1, 4], [3, 2]]
+    },
+    "Gecode_int_nosb": {
+        "time": 0,
+        "optimal": true,
+        "obj": 226,
+        "sol": [[1], [5, 3], [8, 9], [7, 2], [4], [6]]
+    },
+    "Gecode_int_sb": {
+        "time": 0,
+        "optimal": true,
+        "obj": 226,
+        "sol": [[1], [5, 3], [8, 9], [7, 2], [4], [6]]
+    }
+}
